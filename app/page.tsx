@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 type Row = { year: number; district: string; communities: number; patients: number };
 type ApiResponse = { rows?: Row[]; source?: string; updatedAt?: string; error?: string };
 
-const colors = ["#7c3aed", "#f59e0b", "#0ea5e9", "#10b981", "#f43f5e"];
+const colors = ["#b75d3b"];
 const fmt = new Intl.NumberFormat("th-TH");
 
 function LineChart({ data }: { data: { year: number; patients: number }[] }) {
@@ -13,7 +13,7 @@ function LineChart({ data }: { data: { year: number; patients: number }[] }) {
   const points = data.map((item, index) => `${(index / Math.max(data.length - 1, 1)) * 100},${94 - (item.patients / max) * 76}`).join(" ");
   return <div className="line-wrap">
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="line-chart" role="img" aria-label="ผู้ป่วยเข้ารับบำบัดตามปี">
-      <defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#7c3aed" stopOpacity=".24" /><stop offset="100%" stopColor="#7c3aed" stopOpacity="0" /></linearGradient></defs>
+      <defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#b75d3b" stopOpacity=".22" /><stop offset="100%" stopColor="#b75d3b" stopOpacity="0" /></linearGradient></defs>
       {[20, 45, 70, 94].map((y) => <line key={y} x1="0" x2="100" y1={y} y2={y} className="grid-line" />)}
       <polygon points={`0,94 ${points} 100,94`} fill="url(#area)" />
       <polyline points={points} fill="none" className="chart-line" />
